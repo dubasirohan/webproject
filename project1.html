@@ -99,10 +99,9 @@
     </header>
 
     <video autoplay loop muted class="bg-video">
-        <source src="travis_scott.mp4" type="video/mp4">
+        <source src="travis_scott.MP4" type="video/mp4">
         Your browser does not support the video tag.
     </video>
-
 
     <section id="music-manager">
         <h2>🎵 Music Manager</h2>
@@ -127,17 +126,19 @@
 
         fileInput.addEventListener("change", function () {
             let files = Array.from(fileInput.files);
-            files.forEach(file => {
+            files.forEach((file, index) => {
                 let url = URL.createObjectURL(file);
                 tracks.push({ name: file.name, url: url });
+
                 let li = document.createElement("li");
                 li.textContent = file.name;
-                li.onclick = () => playTrack(tracks.indexOf(file));
+                li.onclick = () => playTrack(index);
                 playlist.appendChild(li);
             });
         });
 
         function playTrack(index) {
+            if (tracks.length === 0) return;
             currentTrackIndex = index;
             audioPlayer.src = tracks[currentTrackIndex].url;
             audioPlayer.play();
@@ -152,11 +153,13 @@
         }
 
         function prevTrack() {
+            if (tracks.length === 0) return;
             currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
             playTrack(currentTrackIndex);
         }
 
         function nextTrack() {
+            if (tracks.length === 0) return;
             currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
             playTrack(currentTrackIndex);
         }
