@@ -3,50 +3,101 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Project Hub</title>
+    <title>My Web Projects</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
-            text-align: center;
-            background-color: #f4f4f4;
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #f0f4f8;
+            line-height: 1.6;
             padding: 20px;
         }
+
         h1 {
-            color: #333;
+            text-align: center;
+            font-size: 2.5em;
+            color: #FFEB3B;
+            margin-bottom: 20px;
         }
-        .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 10px;
-            max-width: 400px;
-            margin: auto;
+
+        ul {
+            list-style-type: none;
+            padding: 0;
         }
-        .link-btn {
-            display: block;
+
+        li {
+            margin: 20px 0;
+            background-color: #333;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        li:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+        }
+
+        a {
             text-decoration: none;
-            color: white;
-            background-color: #007bff;
-            padding: 10px 15px;
-            border-radius: 5px;
-            width: 100%;
-            max-width: 300px;
-            transition: background 0.3s;
+            font-size: 1.2em;
+            color: #FFEB3B;
+            transition: color 0.3s;
         }
-        .link-btn:hover {
-            background-color: #0056b3;
+
+        a:hover {
+            color: #2196F3;
+        }
+
+        p {
+            font-size: 1em;
+            color: #bbb;
+            margin-top: 10px;
+        }
+
+        .project-links {
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            gap: 20px;
+        }
+        
+        .project-links li {
+            display: block;
+            width: 80%;
         }
     </style>
 </head>
 <body>
-    <h1>My Project Hub</h1>
-    <div class="container">
-        <a href="project1.html" target="_blank">Project 1</a>
-        <a href="project2.html" target="_blank">Project 2</a>
-        <a href="project3.html" target="_blank">Project 3</a>
-        <a href="project4.html" target="_blank">Project 4</a>
-        <a href="project5.html" target="_blank">Project 5</a>
-
-    </div>
+    <h1>Welcome to My Web Projects</h1>
+    <ul class="project-links">
+        <li>
+            <a href="project1.html" target="_blank">Project 1: Music Player</a>
+            <p>This project is a music player that allows you to add music files from your devices and includes play/pause functionality. It also features a link to buy tickets for the artist's next concert in India.</p>
+        </li>
+        <li>
+            <a href="project2.html" target="_blank">Project 2: Motivational Quote Generator</a>
+            <p>This project generates random motivational quotes to inspire you. It’s a simple but uplifting tool to get daily motivation.</p>
+        </li>
+        <li>
+            <a href="project3.html" target="_blank">Project 3: Book Recommendation Website</a>
+            <p>This website recommends books based on your mood. Whether you're feeling adventurous or looking for a cozy read, it suggests books to suit your current state of mind.</p>
+        </li>
+        <li>
+            <a href="project4.html" target="_blank">Project 4: One Truth, Two Lies Game</a>
+            <p>This is an interactive game where the user is presented with three statements, and they have to guess which one is the truth. It's a fun way to test your knowledge and intuition!</p>
+        </li>
+        <li>
+            <a href="project5.html" target="_blank">Project 5: Simple Notes Application</a>
+            <p>This simple note-taking application allows users to create, save, and delete notes as they wish. Users can also toggle between dark and light mode and access their saved note files. It's a great tool for managing your thoughts and ideas.</p>
+        </li>
+    </ul>
 </body>
 </html>
