@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What Should I Read?</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            text-align: center;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            max-width: 400px;
+        }
+        select, button {
+            font-size: 16px;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            margin-top: 10px;
+            width: 100%;
+        }
+        button {
+            background: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: lightgray;
+        }
+        .result {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>📖 What Should I Read?</h1>
+        <label for="mood">Select Your Mood or Genre:</label>
+        <select id="mood">
+            <option value="happy">Happy & Uplifting</option>
+            <option value="adventure">Adventure & Action</option>
+            <option value="mystery">Mystery & Thriller</option>
+            <option value="fantasy">Fantasy & Magic</option>
+            <option value="sci-fi">Science Fiction</option>
+            <option value="romance">Romance & Love</option>
+            <option value="self-help">Self-Improvement</option>
+        </select>
+        <button onclick="recommendBook()">Get Recommendation 📚</button>
+        <p class="result" id="result">Your book will appear here!</p>
+    </div>
+
+    <script>
+        const bookRecommendations = {
+            happy: [
+                "☀️ 'The Alchemist' by Paulo Coelho - A journey of self-discovery and dreams!",
+                "😊 'Tuesdays with Morrie' by Mitch Albom - Life lessons from a dying professor.",
+                "🌞 'The Little Prince' by Antoine de Saint-Exupéry - A charming and thoughtful story."
+            ],
+            adventure: [
+                "🌍 'The Hobbit' by J.R.R. Tolkien - A classic adventure full of magic and mystery.",
+                "⚔️ 'Treasure Island' by Robert Louis Stevenson - A pirate adventure like no other!",
+                "🏹 'The Three Musketeers' by Alexandre Dumas - Swords, honor, and action!"
+            ],
+            mystery: [
+                "🕵️ 'Gone Girl' by Gillian Flynn - A thrilling, mind-bending mystery.",
+                "🔍 'The Girl with the Dragon Tattoo' by Stieg Larsson - Dark secrets and investigations.",
+                "💀 'The Da Vinci Code' by Dan Brown - Ancient mysteries and suspense."
+            ],
+            fantasy: [
+                "🐉 'Harry Potter and the Sorcerer’s Stone' by J.K. Rowling - The start of a magical journey!",
+                "🧙 'The Name of the Wind' by Patrick Rothfuss - A beautifully told fantasy tale.",
+                "🌌 'The Chronicles of Narnia' by C.S. Lewis - A timeless fantasy world."
+            ],
+            sci_fi: [
+                "🚀 'Dune' by Frank Herbert - A futuristic tale of power and destiny.",
+                "👽 'The War of the Worlds' by H.G. Wells - Classic alien invasion story!",
+                "🤖 'Neuromancer' by William Gibson - Cyberpunk at its finest."
+            ],
+            romance: [
+                "💖 'Pride and Prejudice' by Jane Austen - A timeless love story.",
+                "❤️ 'Me Before You' by Jojo Moyes - A touching and emotional love story.",
+                "💌 'The Notebook' by Nicholas Sparks - A romantic classic."
+            ],
+            self_help: [
+                "🧘‍♂️ 'Atomic Habits' by James Clear - A life-changing book on habits and success.",
+                "💡 'The Power of Now' by Eckhart Tolle - A guide to mindfulness and inner peace.",
+                "📈 'Think and Grow Rich' by Napoleon Hill - Classic personal development wisdom."
+            ]
+        };
+
+        function recommendBook() {
+            const mood = document.getElementById("mood").value;
+            const books = bookRecommendations[mood];
+            const randomBook = books[Math.floor(Math.random() * books.length)];
+            document.getElementById("result").innerText = randomBook;
+        }
+    </script>
+
+</body>
+</html>

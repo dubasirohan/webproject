@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>One Truth & Two Lies</title>
+    <style>
+        body {
+            font-family: Georgia, serif;
+            text-align: center;
+            background: linear-gradient(135deg, #8B0000, #B22222);
+            color: white;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background: rgba(255, 99, 71, 0.2);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            max-width: 500px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #FFD700; /* Gold color for contrast */
+        }
+        .statement {
+            background: #FFD1D1; /* Light red */
+            color: black;
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+            cursor: pointer;
+            transition: background 0.3s, transform 0.2s;
+        }
+        .statement:hover {
+            background: #FF6666; /* Darker red */
+            transform: scale(1.05);
+        }
+        .result {
+            margin-top: 15px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        button {
+            margin-top: 15px;
+            background: #FF4500; /* Orange-red */
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        button:hover {
+            background: #D32F2F; /* Darker red */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1> One Truth & Two Lies</h1>
+        <p>Click on the statement you think is true:</p>
+        <div id="statements"></div>
+        <p class="result" id="result"></p>
+        <button onclick="generateStatements()">New Round 🔄</button>
+    </div>
+
+    <script>
+        const facts = [
+            { truth: "Bananas are berries, but strawberries are not.", lies: ["Pineapples grow on trees.", "Carrots were originally purple."] },
+            { truth: "Octopuses have three hearts.", lies: ["Sharks can blink with both eyes.", "All turtles live in water."] },
+            { truth: "Honey never spoils.", lies: ["Salt melts at room temperature.", "Diamonds can be melted in boiling water."] },
+            { truth: "There is no sound in space.", lies: ["The Moon is bigger than Earth.", "Mars is the hottest planet in the Solar System."] },
+            { truth: "A day on Venus is longer than a year on Venus.", lies: ["Jupiter is the only planet with rings.", "The Sun is actually blue."] }
+        ];
+
+        let currentTruth = "";
+
+        function generateStatements() {
+            const container = document.getElementById("statements");
+            const result = document.getElementById("result");
+            result.innerText = ""; 
+
+            const randomFact = facts[Math.floor(Math.random() * facts.length)];
+            currentTruth = randomFact.truth;
+
+            let allStatements = [randomFact.truth, ...randomFact.lies];
+            allStatements = allStatements.sort(() => Math.random() - 0.5); 
+
+            container.innerHTML = ""; 
+            allStatements.forEach(statement => {
+                let div = document.createElement("div");
+                div.classList.add("statement");
+                div.innerText = statement;
+                div.onclick = () => checkAnswer(statement);
+                container.appendChild(div);
+            });
+        }
+
+        function checkAnswer(selected) {
+            const result = document.getElementById("result");
+            if (selected === currentTruth) {
+                result.innerText = "✅ Correct! That was the truth!";
+                result.style.color = "#32CD32"; /* Lime Green */
+            } else {
+                result.innerText = "❌ Nope! That was a lie.";
+                result.style.color = "#FF0000"; /* Red */
+            }
+        }
+
+        window.onload = generateStatements;
+    </script>
+
+</body>
+</html>

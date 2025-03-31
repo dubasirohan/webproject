@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daily Motivation Card</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Georgia, serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            text-align: center;
+            background: linear-gradient(135deg, #8b0000, #000000);
+            transition: background 0.5s ease-in-out;
+        }
+        .card {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+            width: 80%;
+            max-width: 400px;
+            transition: transform 0.3s;
+            font-family: Georgia, serif;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        h1 {
+            font-size: 26px;
+            margin-bottom: 10px;
+            color: #333;
+            font-family: Georgia, serif;
+        }
+        p {
+            font-size: 18px;
+            margin: 15px 0;
+            color: #444;
+            font-family: Georgia, serif;
+        }
+        button {
+            background-color: white;
+            color: black;
+            border: none;
+            padding: 12px 18px;
+            margin: 10px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 16px;
+            transition: background 0.3s;
+            font-family: Georgia, serif;
+        }
+        button:hover {
+            background-color: lightgray;
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>Daily Motivation</h1>
+        <p id="quote">Click the button for a new quote!</p>
+        <button onclick="generateQuote()">New Quote</button>
+    </div>
+
+    <script>
+        const quotes = [
+            "“Only when the front of your body is relaxed and opened, your breath full and deep, and your gaze unguarded and directly connected with another person's eyes, can your fullest intelligence manifest spontaneously in the situation”",
+            "“Get your life taken care of. Get healthy. Find a happy group of friends. Find a few hobbies that you love. Develop opinions. Start caring about what you spend your time doing.” ",
+            "“Challenge yourself to find the good and beautiful thing inside of everyone. It’s your job to find it. Not their job to show you.”",
+            "“The way to attack anxieties is through incremental, consistent exposure. Not single, extreme exposure.”",
+            "“Courage involves acting over fear, discipline involves acting over laziness or fatigue.”",
+            "“The biggest aphrodisiac in the world is someone who likes you, genuinely likes you.”",
+            "“Develop a nostalgia for the future instead of for the past.”",
+            "“Quickest way to feel masculine is to do hard things.”",
+            "“Your nervous system cannot tell the difference between an imagined experience and a real experience”",
+            "“Get to know people to learn more about yourself”",
+            "“Never half arse things, go all in”",
+            "“Anything that is alive is in a continuous state of change and movement“",
+            "“You possess a kind of inner force that seeks to guide you towards your Life’s task“"
+        ];
+
+        const colors = [
+            "linear-gradient(135deg, #8b0000, #000000)",  // Red - Black
+            "linear-gradient(135deg, #4b0082, #000000)",  // Purple - Black
+            "linear-gradient(135deg, #00008b, #000000)",  // Blue - Black
+            "linear-gradient(135deg, #006400, #000000)",  // Green - Black
+            "linear-gradient(135deg, #ffd700, #000000)",  // Yellow - Black
+            "linear-gradient(135deg, #ff8c00, #000000)",  // Orange - Black
+            "linear-gradient(135deg, #8a2be2, #000000)",  // Violet - Black
+            "linear-gradient(135deg, #ffb6c1, #000000)"   // Light Pink - Black
+        ];
+
+        function generateQuote() {
+            const quoteElement = document.getElementById("quote");
+            const randomIndex = Math.floor(Math.random() * quotes.length);
+            quoteElement.innerText = quotes[randomIndex];
+
+            // Change background color randomly
+            document.body.style.background = colors[Math.floor(Math.random() * colors.length)];
+        }
+    </script>
+</body>
+</html>

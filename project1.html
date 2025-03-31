@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Circus Maximus</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #fff;
+            background-color: #000;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: rgba(0, 0, 0, 0.8);
+            padding: 15px;
+        }
+
+        .title {
+            font-size: 2rem;
+            color: #ff4500;
+        }
+
+        nav a {
+            color: #ff4500;
+            text-decoration: none;
+            font-size: 1.2rem;
+            border: 2px solid #ff4500;
+            padding: 5px 15px;
+            border-radius: 10px;
+        }
+
+        .bg-video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+        }
+
+        #music-manager {
+            margin-top: 50px;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            display: inline-block;
+            width: 80%;
+            border-radius: 10px;
+        }
+
+        button {
+            background: #ff4500;
+            color: #fff;
+            padding: 10px;
+            margin: 5px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background: #ff6347;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        li {
+            padding: 5px;
+            cursor: pointer;
+            background: #222;
+            margin: 5px;
+            border-radius: 5px;
+        }
+
+        li:hover {
+            background: #333;
+        }
+
+        input[type="range"] {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 class="title">Travis Scott Circus Maximus Tour</h1>
+        <nav>
+            <a href="https://in.bookmyshow.com/events/travis-scott-circus-maximus-stadium-tour-india/ET00439284">
+                Get Tickets
+            </a>
+        </nav>
+    </header>
+
+    <!-- Background Video -->
+    <video autoplay loop muted class="bg-video">
+        <source src="/Users/rohan/Desktop/Iphone footage/105598975_264697854631359_6692523222503477666_n 2.MP4" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+
+    <!-- Music Playlist Manager -->
+    <section id="music-manager">
+        <h2>🎵 Music Manager</h2>
+        <input type="file" id="fileInput" accept="audio/mp3" multiple>
+        <button onclick="playPause()">▶️ Play/Pause</button>
+        <button onclick="prevTrack()">⏮️ Prev</button>
+        <button onclick="nextTrack()">⏭️ Next</button>
+        <br>
+        <label>🔊 Volume: </label>
+        <input type="range" id="volumeControl" min="0" max="1" step="0.1" value="1">
+        <ul id="playlist"></ul>
+        <audio id="audioPlayer" controls></audio>
+    </section>
+
+    <script>
+        let audioPlayer = document.getElementById("audioPlayer");
+        let fileInput = document.getElementById("fileInput");
+        let playlist = document.getElementById("playlist");
+        let volumeControl = document.getElementById("volumeControl");
+        let tracks = [];
+        let currentTrackIndex = 0;
+
+        fileInput.addEventListener("change", function () {
+            let files = Array.from(fileInput.files);
+            files.forEach(file => {
+                let url = URL.createObjectURL(file);
+                tracks.push({ name: file.name, url: url });
+                let li = document.createElement("li");
+                li.textContent = file.name;
+                li.onclick = () => playTrack(tracks.indexOf(file));
+                playlist.appendChild(li);
+            });
+        });
+
+        function playTrack(index) {
+            currentTrackIndex = index;
+            audioPlayer.src = tracks[currentTrackIndex].url;
+            audioPlayer.play();
+        }
+
+        function playPause() {
+            if (audioPlayer.paused) {
+                audioPlayer.play();
+            } else {
+                audioPlayer.pause();
+            }
+        }
+
+        function prevTrack() {
+            currentTrackIndex = (currentTrackIndex - 1 + tracks.length) % tracks.length;
+            playTrack(currentTrackIndex);
+        }
+
+        function nextTrack() {
+            currentTrackIndex = (currentTrackIndex + 1) % tracks.length;
+            playTrack(currentTrackIndex);
+        }
+
+        volumeControl.addEventListener("input", function () {
+            audioPlayer.volume = volumeControl.value;
+        });
+    </script>
+</body>
+</html>
